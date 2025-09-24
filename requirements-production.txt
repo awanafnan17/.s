@@ -1,0 +1,52 @@
+# Production Requirements for IICE CRM
+# Use this file for Linux/Unix production deployments
+
+# Core Django
+Django==4.2
+asgiref==3.8.1
+sqlparse==0.5.1
+tzdata==2024.2
+typing_extensions==4.14.1
+
+# Database
+dj-database-url==3.0.1
+# MySQL client (primary option)
+mysqlclient==2.2.4
+# MySQL client fallback (if mysqlclient fails to install)
+PyMySQL==1.1.0
+# PostgreSQL support (for alternative hosting)
+psycopg2-binary==2.9.9
+
+# Configuration
+python-decouple==3.8
+
+# Web Server
+gunicorn==21.2.0
+whitenoise==6.6.0
+
+# Email
+sendgrid==6.11.0
+python-http-client==3.3.7
+starkbank-ecdsa==2.2.0
+
+# Security & Encryption
+cryptography==41.0.7
+
+# File Processing
+Pillow==11.0.0
+PyPDF2==3.0.1
+python-docx==1.1.2
+reportlab==4.2.5
+lxml==6.0.0
+
+# Utilities
+chardet==5.2.0
+colorама==0.4.6
+packaging==25.0
+python-dateutil==2.8.2
+pytz==2024.2
+six==1.17.0
+tqdm==4.67.1
+
+# Note: pywin32 is excluded as it's Windows-specific
+# Note: docx2pdf might need additional system dependencies on Linux
