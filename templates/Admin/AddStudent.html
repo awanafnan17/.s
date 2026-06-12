@@ -336,7 +336,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating form-floating-outline">
-                                    <input class="form-control" type="email" id="email" name="email" required />
+                                    <input class="form-control" type="email" id="email" name="email" />
                                     <label for="email">E-mail</label>
                                     {% if form.email.errors %}
                                         <div class="text-danger">
@@ -349,7 +349,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating form-floating-outline">
-                                    <input class="form-control" type="text" id="cnic" name="cnic" required />
+                                    <input class="form-control" type="text" id="cnic" name="cnic" />
                                     <label for="cnic">CNIC</label>
                                 </div>
                             </div>
@@ -361,32 +361,32 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating form-floating-outline">
-                                    <input type="text" class="form-control" id="Temp_address" name="Temp_address" required />
+                                    <input type="text" class="form-control" id="Temp_address" name="Temp_address" />
                                     <label for="Temp_address"> Temporary Address</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating form-floating-outline">
-                                    <input type="text" class="form-control" id="Perm_address" name="Perm_address" required />
+                                    <input type="text" class="form-control" id="Perm_address" name="Perm_address" />
                                     <label for="Perm_address"> Permanent Address</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                               <div class="form-floating form-floating-outline">
-                                <input type="text" class="form-control" id="last_degree" name="last_degree" required />
+                                <input type="text" class="form-control" id="last_degree" name="last_degree" />
                                 <label for="last_degree">Last Degree</label>
                               </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating form-floating-outline">
-                                    <input type="text" class="form-control" id="last_institution" name="last_institution" required />
+                                    <input type="text" class="form-control" id="last_institution" name="last_institution" />
                                     <label for="last_institution">Last Institution</label>
                                 </div>
                             </div>
                             <!-- Sessions Selection -->
                             <div class="col-md-12">
                                 <div class="form-floating form-floating-outline">
-                                    <select class="form-select select2-multiple" id="sessions" name="sessions" multiple required>
+                                    <select class="form-select select2-multiple" id="sessions" name="sessions" multiple>
                                         {% for session in active_sessions %}
                                             <option value="{{ session.id }}" 
                                                 data-registration-fee="{{ session.registration_fee }}" 
@@ -648,17 +648,11 @@
             errorListElement.innerHTML = '';
             errorContainer.style.display = 'none';
 
-            // Required text fields
+            // Required text fields - only student name, father name, and contact number
             const requiredFields = [
                 { id: 'student_name', label: 'Student Name' },
                 { id: 'father_name', label: 'Father Name' },
-                { id: 'email', label: 'Email' },
-                { id: 'cnic', label: 'CNIC' },
-                { id: 'mobile_no', label: 'Mobile Number' },
-                { id: 'Temp_address', label: 'Temporary Address' },
-                { id: 'Perm_address', label: 'Permanent Address' },
-                { id: 'last_degree', label: 'Last Degree' },
-                { id: 'last_institution', label: 'Last Institution' }
+                { id: 'mobile_no', label: 'Mobile Number' }
             ];
 
             // Check required text fields
@@ -672,23 +666,7 @@
                 }
             });
 
-            // Validate email format
-            const email = document.getElementById('email');
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (email.value.trim() && !emailRegex.test(email.value.trim())) {
-                errorList.push('Please enter a valid email address');
-                email.classList.add('is-invalid');
-            }
-
-            // Relaxed CNIC validation - allow various formats
-            const cnic = document.getElementById('cnic');
-            const cnicValue = cnic.value.replace(/\D/g, ''); // Remove all non-digits
-            if (cnicValue.length !== 13) {
-                errorList.push('CNIC must be 13 digits');
-                cnic.classList.add('is-invalid');
-            }
-
-            // Relaxed mobile number validation
+            // Validate mobile number (required field)
             const mobile = document.getElementById('mobile_no');
             const mobileValue = mobile.value.replace(/\D/g, ''); // Remove all non-digits
             if (mobileValue.length < 10 || mobileValue.length > 12) {
@@ -696,25 +674,51 @@
                 mobile.classList.add('is-invalid');
             }
 
-            // Check if at least one session is selected
-            const sessions = document.getElementById('sessions');
-            if (sessions.selectedOptions.length === 0) {
-                errorList.push('Please select at least one session');
-                sessions.classList.add('is-invalid');
-            } else {
-                sessions.classList.remove('is-invalid');
+            // Optional field validations - only validate if user enters something
+            // Validate email format (optional)
+            const email = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email.value.trim() && !emailRegex.test(email.value.trim())) {
+                errorList.push('Please enter a valid email address');
+                email.classList.add('is-invalid');
             }
+
+            // Validate CNIC format (optional)
+            const cnic = document.getElementById('cnic');
+            const cnicValue = cnic.value.replace(/\D/g, ''); // Remove all non-digits
+            if (cnicValue.length > 0 && cnicValue.length !== 13) {
+                errorList.push('CNIC must be 13 digits if provided');
+                cnic.classList.add('is-invalid');
+            }
+
+            // Sessions selection is now optional
+            const sessions = document.getElementById('sessions');
+            // No validation error for empty sessions selection
             
-            // Validate payment when installments are disabled
-            const enableInstallments = document.getElementById('enable_installments');
-            const paidAmount = parseFloat(document.getElementById('paid_amount').value) || 0;
-            const finalFee = parseFloat(document.getElementById('final_fee').value) || 0;
-            
-            if (!enableInstallments.checked && paidAmount !== finalFee) {
-                errorList.push('When installments are disabled, the paid amount must equal the final fee');
-                document.getElementById('paid_amount').classList.add('is-invalid');
-            } else {
-                document.getElementById('paid_amount').classList.remove('is-invalid');
+            // Validate payment only if sessions are selected and fees are calculated
+            if (sessions.selectedOptions.length > 0) {
+                const enableInstallments = document.getElementById('enable_installments');
+                const paidAmount = parseFloat(document.getElementById('paid_amount').value) || 0;
+                const finalFee = parseFloat(document.getElementById('final_fee').value) || 0;
+                
+                if (!enableInstallments.checked && paidAmount !== finalFee) {
+                    errorList.push('When installments are disabled, the paid amount must equal the final fee');
+                    document.getElementById('paid_amount').classList.add('is-invalid');
+                } else {
+                    document.getElementById('paid_amount').classList.remove('is-invalid');
+                }
+
+                // New validation: When installments are enabled, ensure latest installment paid equals per installment amount
+                if (enableInstallments.checked) {
+                    const latestPaid = parseFloat(document.getElementById('latest_installment_paid').value) || 0;
+                    const perInstallment = parseFloat(document.getElementById('per_installment_amount').value) || 0;
+                    if (latestPaid !== perInstallment) {
+                        errorList.push('When installments are enabled, the latest installment paid amount must equal the per installment amount');
+                        document.getElementById('latest_installment_paid').classList.add('is-invalid');
+                    } else {
+                        document.getElementById('latest_installment_paid').classList.remove('is-invalid');
+                    }
+                }
             }
             
             // Remove required file validation - make photos optional

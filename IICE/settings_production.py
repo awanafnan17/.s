@@ -4,6 +4,13 @@ from .settings import *
 import os
 from decouple import config
 
+# Ensure PyMySQL pretends to be MySQLdb when mysqlclient is not available
+try:
+    import pymysql
+    pymysql.install_as_MySQLdb()
+except Exception:
+    pass
+
 # Production Security Settings
 DEBUG = False
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='da600.is.cc', cast=lambda v: [s.strip() for s in v.split(',')])

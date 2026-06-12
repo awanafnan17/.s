@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('Admin', '0004_studentfee_installment'),
+        ('Admin', '0015_merge_20250815_1952'),
     ]
 
     operations = [

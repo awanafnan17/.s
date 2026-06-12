@@ -1,0 +1,151 @@
+WARNING 2025-09-27 18:53:53,490 log 3491825 139710886632320 Not Found: /favicon.ico
+ERROR 2025-09-27 19:44:15,447 log 3606046 140296802720640 Internal Server Error: /admin-dashboard/
+Traceback (most recent call last):
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/domains/iqraacademy.com.pk/public_html/crm/Admin/views.py", line 42, in wrapper
+    if request.user.usertype == 3:  # Teacher
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'User' object has no attribute 'usertype'
+ERROR 2025-09-27 20:01:43,364 log 3660200 140582349470592 Internal Server Error: /admin-dashboard/
+Traceback (most recent call last):
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/domains/iqraacademy.com.pk/public_html/crm/Admin/views.py", line 42, in wrapper
+    if request.user.usertype == 3:  # Teacher
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'User' object has no attribute 'usertype'
+ERROR 2025-09-27 20:01:43,533 log 3660200 140582349470592 Internal Server Error: /admin-dashboard/
+Traceback (most recent call last):
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/domains/iqraacademy.com.pk/public_html/crm/Admin/views.py", line 42, in wrapper
+    if request.user.usertype == 3:  # Teacher
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'User' object has no attribute 'usertype'
+ERROR 2025-09-27 20:01:44,092 log 3660200 140582349470592 Internal Server Error: /admin-dashboard/
+Traceback (most recent call last):
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/domains/iqraacademy.com.pk/public_html/crm/Admin/views.py", line 42, in wrapper
+    if request.user.usertype == 3:  # Teacher
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'User' object has no attribute 'usertype'
+ERROR 2025-09-27 20:01:44,280 log 3660200 140582349470592 Internal Server Error: /admin-dashboard/
+Traceback (most recent call last):
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/domains/iqraacademy.com.pk/public_html/crm/Admin/views.py", line 42, in wrapper
+    if request.user.usertype == 3:  # Teacher
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'User' object has no attribute 'usertype'
+ERROR 2025-09-27 20:01:44,504 log 3660200 140582349470592 Internal Server Error: /admin-dashboard/
+Traceback (most recent call last):
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/domains/iqraacademy.com.pk/public_html/crm/Admin/views.py", line 42, in wrapper
+    if request.user.usertype == 3:  # Teacher
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'User' object has no attribute 'usertype'
+ERROR 2025-09-27 20:01:46,226 log 3660200 140582349470592 Internal Server Error: /admin-dashboard/
+Traceback (most recent call last):
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/domains/iqraacademy.com.pk/public_html/crm/Admin/views.py", line 42, in wrapper
+    if request.user.usertype == 3:  # Teacher
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'User' object has no attribute 'usertype'
+ERROR 2025-09-27 20:05:11,007 log 3671689 139879089822592 Internal Server Error: /admin-dashboard/
+Traceback (most recent call last):
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/domains/iqraacademy.com.pk/public_html/crm/Admin/views.py", line 42, in wrapper
+    if request.user.usertype == 3:  # Teacher
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'User' object has no attribute 'usertype'
+ERROR 2025-09-27 20:05:34,881 log 3671970 139923813915520 Internal Server Error: /admin-dashboard/
+Traceback (most recent call last):
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/domains/iqraacademy.com.pk/public_html/crm/Admin/views.py", line 42, in wrapper
+    if request.user.usertype == 3:  # Teacher
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'User' object has no attribute 'usertype'
+ERROR 2025-09-27 20:06:35,458 log 3671970 139923813915520 Internal Server Error: /admin-dashboard/
+Traceback (most recent call last):
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/domains/iqraacademy.com.pk/public_html/crm/Admin/views.py", line 42, in wrapper
+    if request.user.usertype == 3:  # Teacher
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/iqraacad/virtualenv/domains/iqraacademy.com.pk/public_html/crm/3.11/lib/python3.11/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'User' object has no attribute 'usertype'

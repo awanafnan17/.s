@@ -1,3 +1,5 @@
+import logging
+logger = logging.getLogger('crm.views')
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from authentication.models import User
@@ -18,7 +20,7 @@ def select_course(request):
         messages.error(request, 'User not found.')
         return redirect('home')
     except Exception as e:
-        messages.error(request, f'Error retrieving data: {str(e)}')
+        messages.error(request, 'An error occurred while retrieving data.')
         return redirect('home')
     context = {
         'user': user,
@@ -41,7 +43,7 @@ def mark_attendance(request, course_id):
         messages.error(request, 'Course not found.')
         return redirect('tec_select_course')
     except Exception as e:
-        messages.error(request, f'Error retrieving data: {str(e)}')
+        messages.error(request, 'An error occurred while retrieving data.')
         return redirect('tec_select_course')
 
     if request.method == 'POST':
@@ -79,7 +81,7 @@ def Profile(request):
         messages.error(request, 'User not found.')
         return redirect('home')
     except Exception as e:
-        messages.error(request, f'Error retrieving user data: {str(e)}')
+        messages.error(request, 'An error occurred while loading user data.')
         return redirect('home')
 
     if request.method == 'POST':
@@ -89,7 +91,7 @@ def Profile(request):
             # Handle profile photo
             if 'profile_photo' in request.FILES:
                 if user.profile_photo:
-                    print(user.profile_photo.path)
+                    logger.debug(user.profile_photo.path)
                     # Delete old photo if it exists
                     if os.path.exists(user.profile_photo.path):
                         os.remove(user.profile_photo.path)

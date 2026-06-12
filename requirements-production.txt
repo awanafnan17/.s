@@ -41,7 +41,7 @@ lxml==6.0.0
 
 # Utilities
 chardet==5.2.0
-colorама==0.4.6
+colorama==0.4.6
 packaging==25.0
 python-dateutil==2.8.2
 pytz==2024.2

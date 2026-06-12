@@ -46,12 +46,21 @@ media/
 # Static files (if collected)
 staticfiles/
 
-# Environment variables
+# Environment variables — NEVER commit credentials
 .env
+.env.*
+!.env.example
+*.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+.env.production
+.env.test
+
+# Logs
+logs/
+*.log
 
 # OS
 .DS_Store

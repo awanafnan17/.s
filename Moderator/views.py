@@ -1,3 +1,5 @@
+import logging
+logger = logging.getLogger('crm.views')
 import os
 from lib2to3.fixes.fix_input import context
 from django.conf import settings
@@ -20,7 +22,7 @@ def MakeNotification(request):
         messages.error(request, 'User not found.')
         return redirect('home')
     except Exception as e:
-        messages.error(request, f'Error retrieving data: {str(e)}')
+        messages.error(request, 'An error occurred while retrieving data.')
         return redirect('home')
     for session in sessions:
         if session.due_date < date.today():
@@ -45,7 +47,7 @@ def Notification(request):
         messages.error(request, 'User not found.')
         return redirect('home')
     except Exception as e:
-        messages.error(request, f'Error retrieving notifications: {str(e)}')
+        messages.error(request, 'An error occurred while loading notifications.')
         return redirect('home')
     context = {
         'user': user,
@@ -89,7 +91,7 @@ def StudentSessionView(request, studentsessionid):
         messages.error(request, 'Student session not found.')
         return redirect('mod_Students')
     except Exception as e:
-        messages.error(request, f'Error retrieving data: {str(e)}')
+        messages.error(request, 'An error occurred while retrieving data.')
         return redirect('mod_Students')
 
     context = {
@@ -122,7 +124,7 @@ def AddStudentSession(request, studentid):
         messages.error(request, 'Student not found.')
         return redirect('mod_Students')
     except Exception as e:
-        messages.error(request, f'Error retrieving data: {str(e)}')
+        messages.error(request, 'An error occurred while retrieving data.')
         return redirect('mod_Students')
 
     if request.method == 'POST':
@@ -181,7 +183,7 @@ def StudentSession(request, studentid):
         messages.error(request, 'Student not found.')
         return redirect('mod_Students')
     except Exception as e:
-        messages.error(request, f'Error retrieving data: {str(e)}')
+        messages.error(request, 'An error occurred while retrieving data.')
         return redirect('mod_Students')
 
     context = {
@@ -206,7 +208,7 @@ def LeadView(request, leadid):
         messages.error(request, 'Lead not found.')
         return redirect('mod_Leads')
     except Exception as e:
-        messages.error(request, f'Error retrieving data: {str(e)}')
+        messages.error(request, 'An error occurred while retrieving data.')
         return redirect('mod_Leads')
 
     context = {
@@ -224,8 +226,8 @@ def LeadView(request, leadid):
             return redirect('mod_LeadView', leadid=leadid)  # Redirect to avoid resubmission
         else:
             # Print form errors for debugging
-            print("Form is not valid:")
-            print(form.errors)
+            logger.debug("Form is not valid:")
+            logger.debug(form.errors)
 
     else:
         form = LeadForm(instance=userdata)
@@ -270,7 +272,7 @@ def AddLead(request):
             messages.success(request, "Lead added successfully!")
             return redirect('mod_Leads')
         else:
-            print(form.errors)  # Debug: print any form errors
+            logger.debug(form.errors)  # Debug: print any form errors
 
     else:
         form = LeadForm()
@@ -439,21 +441,21 @@ def StudentView(request, studentid):
             # Handle profile photo
             if 'profile_photo' in request.FILES:
                 if userdata.profile_photo:
-                    print(f"Old profile photo path: {userdata.profile_photo.path}")
+                    logger.debug(f"Old profile photo path: {userdata.profile_photo.path}")
                     if os.path.exists(userdata.profile_photo.path):
                         os.remove(userdata.profile_photo.path)
 
                 userdata.profile_photo = request.FILES['profile_photo']
             if 'cnic_photo' in request.FILES:
                 if userdata.cnic_photo:
-                    print(f"Old profile photo path: {userdata.cnic_photo.path}")
+                    logger.debug(f"Old profile photo path: {userdata.cnic_photo.path}")
                     if os.path.exists(userdata.cnic_photo.path):
                         os.remove(userdata.cnic_photo.path)
 
                 userdata.cnic_photo = request.FILES['cnic_photo']
             if 'degree_photo' in request.FILES:
                 if userdata.degree_photo:
-                    print(f"Old profile photo path: {userdata.degree_photo.path}")
+                    logger.debug(f"Old profile photo path: {userdata.degree_photo.path}")
                     if os.path.exists(userdata.degree_photo.path):
                         os.remove(userdata.degree_photo.path)
 
@@ -465,8 +467,8 @@ def StudentView(request, studentid):
             return redirect('mod_StudentView', studentid=studentid)  # Redirect to avoid resubmission
         else:
             # Print form errors for debugging
-            print("Form is not valid:")
-            print(form.errors)
+            logger.debug("Form is not valid:")
+            logger.debug(form.errors)
 
     else:
         form = StudentForm(instance=userdata)
@@ -491,7 +493,7 @@ def AddStudent(request):
 
     user_id = request.session.get('user_id')
     user = User.objects.get(id=user_id)  # Logged-in user
-    print(user)
+    logger.debug(user)
 
     if request.method == 'POST':
         form = StudentForm(request.POST, request.FILES)
@@ -586,7 +588,7 @@ def AddStudent(request):
             admin_models.Notification.objects.create(user=user, date=date.today(), category='New Entry', content=message)
             return redirect('mod_Students')
         else:
-            print(form.errors)  # Debug: print any form errors
+            logger.debug(form.errors)  # Debug: print any form errors
 
     else:
         form = StudentForm()
@@ -621,7 +623,7 @@ def Profile(request):
             # Handle profile photo
             if 'profile_photo' in request.FILES:
                 if user.profile_photo:
-                    print(user.profile_photo.path)
+                    logger.debug(user.profile_photo.path)
                     # Delete old photo if it exists
                     if os.path.exists(user.profile_photo.path):
                         os.remove(user.profile_photo.path)

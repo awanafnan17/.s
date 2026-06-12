@@ -712,7 +712,46 @@
             // Store results globally for export functionality
             currentResults = results;
             
-            // Display matched students
+            // Display enhanced stats if available
+            if (results.stats) {
+                const statsHtml = `
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <div class="card bg-light">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">${results.stats.session_students_count || 0}</h5>
+                                    <p class="card-text">Total Students</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-success text-white">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">${results.stats.matched_count || 0}</h5>
+                                    <p class="card-text">Total Matched</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-info text-white">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">${results.stats.high_confidence_matches || 0}</h5>
+                                    <p class="card-text">High Confidence</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                `;
+                
+                // Insert stats before results section
+                if (!$('#comparisonStats').length) {
+                    $('#resultsSection').prepend('<div id="comparisonStats"></div>');
+                }
+                $('#comparisonStats').html(statsHtml);
+            }
+            
+            // Display matched students with enhanced information
             $('#matchedCount').text(results.matched.length);
             if (results.matched.length > 0) {
                 const matchedHtml = `
@@ -722,27 +761,46 @@
                                 <tr>
                                     <th style="background-color: #ffff99; color: #000;">Student Name <i class="ri-focus-3-line" title="Comparison Field"></i></th>
                                     <th>Roll No</th>
-                                    <th>Father Name</th>
+                                    <th>Confidence</th>
+                                    <th>Match Details</th>
                                     <th>Mobile No</th>
                                     <th>Email</th>
                                     <th>Session</th>
-                                    <th>Session Period</th>
                                     <th>Registration Date</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                ${results.matched.map(student => `
-                                    <tr>
-                                        <td style="background-color: #ffffcc;"><strong>${student.student_name || 'N/A'}</strong></td>
-                                        <td><span class="badge bg-primary">${student.rollno || 'N/A'}</span></td>
-                                        <td>${student.father_name || 'N/A'}</td>
-                                        <td><a href="tel:${student.mobile_no || ''}" class="text-decoration-none">${student.mobile_no || 'N/A'}</a></td>
-                                        <td><a href="mailto:${student.email || ''}" class="text-decoration-none">${student.email || 'N/A'}</a></td>
-                                        <td><span class="badge bg-info">${student.session_name || 'N/A'} (${student.session_type || 'N/A'})</span></td>
-                                        <td><small class="text-muted">${student.start_date || 'N/A'} to ${student.end_date || 'N/A'}</small></td>
-                                        <td><small class="text-muted">${student.registration_date || 'N/A'}</small></td>
-                                    </tr>
-                                `).join('')}
+                                ${results.matched.map(student => {
+                                    const matchInfo = student.pdf_name_match || {};
+                                    const confidence = matchInfo.confidence_level || 'medium';
+                                    
+                                    let confidenceBadge = '';
+                                    let matchDetails = '';
+                                    
+                                    if (confidence === 'high') {
+                                        confidenceBadge = '<span class="badge bg-success"><i class="ri-shield-check-line me-1"></i>High</span>';
+                                        matchDetails = '✓ Student name matched (case-insensitive)';
+                                    } else if (confidence === 'medium') {
+                                        confidenceBadge = '<span class="badge bg-warning"><i class="ri-information-line me-1"></i>Medium</span>';
+                                        matchDetails = '✓ Student name matched (case-insensitive)';
+                                    } else {
+                                        confidenceBadge = '<span class="badge bg-secondary"><i class="ri-question-line me-1"></i>Low</span>';
+                                        matchDetails = 'Student name matched (partial)';
+                                    }
+                                    
+                                    return `
+                                        <tr>
+                                            <td style="background-color: #ffffcc;"><strong>${student.student_name || 'N/A'}</strong></td>
+                                            <td><span class="badge bg-primary">${student.rollno || 'N/A'}</span></td>
+                                            <td>${confidenceBadge}</td>
+                                            <td><small class="text-muted">${matchDetails}</small></td>
+                                            <td><a href="tel:${student.mobile_no || ''}" class="text-decoration-none">${student.mobile_no || 'N/A'}</a></td>
+                                            <td><a href="mailto:${student.email || ''}" class="text-decoration-none">${student.email || 'N/A'}</a></td>
+                                            <td><span class="badge bg-info">${student.session_name || 'N/A'} (${student.session_type || 'N/A'})</span></td>
+                                            <td><small class="text-muted">${student.registration_date || 'N/A'}</small></td>
+                                        </tr>
+                                    `;
+                                }).join('')}
                             </tbody>
                         </table>
                     </div>
@@ -762,11 +820,9 @@
                                 <tr>
                                     <th style="background-color: #ffff99; color: #000;">Student Name <i class="ri-focus-3-line" title="Comparison Field"></i></th>
                                     <th>Roll No</th>
-                                    <th>Father Name</th>
                                     <th>Mobile No</th>
                                     <th>Email</th>
                                     <th>Session</th>
-                                    <th>Session Period</th>
                                     <th>Registration Date</th>
                                 </tr>
                             </thead>
@@ -775,11 +831,9 @@
                                     <tr>
                                         <td style="background-color: #ffffcc;"><strong>${student.student_name || 'N/A'}</strong></td>
                                         <td><span class="badge bg-primary">${student.rollno || 'N/A'}</span></td>
-                                        <td>${student.father_name || 'N/A'}</td>
                                         <td><a href="tel:${student.mobile_no || ''}" class="text-decoration-none">${student.mobile_no || 'N/A'}</a></td>
                                         <td><a href="mailto:${student.email || ''}" class="text-decoration-none">${student.email || 'N/A'}</a></td>
                                         <td><span class="badge bg-info">${student.session_name || 'N/A'} (${student.session_type || 'N/A'})</span></td>
-                                        <td><small class="text-muted">${student.start_date || 'N/A'} to ${student.end_date || 'N/A'}</small></td>
                                         <td><small class="text-muted">${student.registration_date || 'N/A'}</small></td>
                                     </tr>
                                 `).join('')}
@@ -792,14 +846,64 @@
                 $('#studentsOnlyNames').html('<div class="alert alert-success"><i class="ri-check-line me-2"></i>All students found in PDF</div>');
             }
             
-            // Add note about comparison field
-            const noteHtml = `
+            // Add detailed comparison log if available
+            if (results.comparison_log && results.comparison_log.length > 0) {
+                const logHtml = `
+                    <div class="result-category mt-4">
+                        <h6 class="text-primary mb-3">
+                            <i class="ri-file-list-line me-2"></i>
+                            Detailed Comparison Log
+                        </h6>
+                        <div style="max-height: 300px; overflow-y: auto; border: 1px solid #e9ecef; border-radius: 8px; padding: 15px; background: #f8f9fa;">
+                            ${results.comparison_log.map(log => {
+                                let statusIcon = '';
+                                let statusClass = '';
+                                
+                                if (log.status === 'matched') {
+                                    statusIcon = '✅';
+                                    statusClass = 'text-success';
+                                } else if (log.status === 'not_matched') {
+                                    statusIcon = '❌';
+                                    statusClass = 'text-danger';
+                                } else if (log.status === 'invalid_name') {
+                                    statusIcon = '⚠️';
+                                    statusClass = 'text-warning';
+                                } else {
+                                    statusIcon = 'ℹ️';
+                                    statusClass = 'text-info';
+                                }
+                                
+                                return `
+                                    <div class="mb-2 p-2 border-bottom">
+                                        <div class="d-flex align-items-center">
+                                            <span class="me-2">${statusIcon}</span>
+                                            <strong>${log.student_name}</strong> (Roll: ${log.rollno})
+                                        </div>
+                                        <small class="text-muted ms-4">${log.message || 'No additional details'}</small>
+                                        ${log.confidence ? `<span class="badge bg-secondary ms-2">${log.confidence}</span>` : ''}
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+                $('#studentsOnlyNames').after(logHtml);
+            }
+            
+            // Add note about comparison field and features
+            const features = results.enhanced_features || {};
+            const featuresHtml = `
                 <div class="alert alert-info mt-3">
                     <i class="ri-information-line me-2"></i>
-                    <strong>Note:</strong> The highlighted <span style="background-color: #ffff99; padding: 2px 4px; border-radius: 3px;">Student Name</span> column indicates the field used for PDF comparison.
+                    <strong>Enhanced Features:</strong>
+                    <ul class="mt-2 mb-0">
+                        <li><strong>Exact Name Matching:</strong> ${features.exact_name_matching ? '✅ Enabled' : '❌ Disabled'}</li>
+                        <li><strong>Name Validation:</strong> ${features.name_validation ? '✅ Enabled' : '❌ Disabled'}</li>
+                        <li><strong>Detailed Logging:</strong> ${features.detailed_logging ? '✅ Available' : '❌ Not Available'}</li>
+                    </ul>
                 </div>
             `;
-            $('#studentsOnlyNames').after(noteHtml);
+            $('#studentsOnlyNames').after(featuresHtml);
         }
         
         let currentResults = null; // Store current comparison results

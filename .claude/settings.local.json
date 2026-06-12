@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -n \"X-CSRFToken\\\\|csrftoken\\\\|csrf_token\\\\|fetch\\\\|\\\\\\\\$.ajax\" \"C:\\\\Users\\\\Afnan Awan\\\\Downloads\\\\CRM\\\\IICE-CRM\\\\templates\\\\Admin\\\\Payments.html\")",
+      "Bash(python -c ' *)",
+      "PowerShell(python manage.py check 2>$null; python manage.py makemigrations --check --dry-run)",
+      "PowerShell(python test_pdf_parser_manual.py)",
+      "PowerShell(python -c \"import django,os; os.environ.setdefault\\('DJANGO_SETTINGS_MODULE','IICE.settings'\\); django.setup\\(\\); from Admin import views; print\\('views OK'\\); from Admin.views import PDFNameComparison; print\\('PDFNameComparison OK'\\)\"; python manage.py check)",
+      "PowerShell(\\(Get-Content Admin\\\\tests.py | Measure-Object -Line\\).Lines)",
+      "PowerShell(python manage.py test Admin.tests --verbosity=2 2>$null)",
+      "PowerShell(python manage.py test Admin.tests --verbosity=2)",
+      "PowerShell(Remove-Item *)"
+    ]
+  }
+}

@@ -1,1 +1,2 @@
-@import 'highlight.js/styles/github.css';
+/* GitHub-style syntax highlighting - import removed to fix collectstatic error */
+/* Add custom highlight.js GitHub theme styles here if needed */
